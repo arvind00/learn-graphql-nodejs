@@ -10,7 +10,7 @@ Project to learn graphql server setup with nodejs
 ## Installation
 
 ```sh
-npm i cors graphql apollo-server-express -S
+npm i cors graphql apollo-server-express nodemon -S
 ```
 
 ## Server code
