@@ -9,13 +9,15 @@ app.use(express.json(), cors());
 // create graphql schema (query + resolvers)
 const typeDefs = gql`
   type Query{
-      hello: String
+    message: String
+    randomNumber: Int
   }
 `
 
 const resolvers = {
     Query: {
-        hello: () => 'Hello from Graphql'
+        message: () => 'Hello from Graphql',
+        randomNumber: ()=> Math.floor(Math.random() * 10) + 1
     }
 }
 
