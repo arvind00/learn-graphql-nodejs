@@ -5,7 +5,7 @@
 - The schema is built using the type system we discussed previously.
 - It is the contract between the client and server.
 
-## Activity
+## Activity 1
 - create an Employee schema 
 - the schema should have the below fields
     - id
@@ -82,4 +82,71 @@ query {
     firstName
   }
 }
+```
+
+## Activity 2
+- Create a folder `src`
+- Create a file `src/schema.js` and define 2 types:
+    - Query
+    - FrontEndTechnology
+- Query should have a field : `frontEndTechnologies` of type `[FrontEndTechnology]`
+- FrontEndTechnology should have the below fields
+    - id
+    - name
+    - description
+- Create a file `src/data.js` with a list of front-end technologies which we can serve it to the query defined above
+- In the `src/schema.js` define `resolvers` resolving the field(s) defined the query 
+
+## Solution
+
+```js
+// src/schema.js
+const { gql } = require('apollo-server-express');
+const { FRONT_END_TECHNOLOGIES } = require('./data');
+//define typeDefs and resolvers and export them
+
+exports.typeDefs = gql`
+  type Query {
+      frontEndTechnologies: [FrontEndTechnology]
+  }
+
+  type FrontEndTechnology {
+      id: ID!
+      name: String!
+      description: String
+  }
+`
+exports.resolvers = {
+    Query: {
+        frontEndTechnologies: () => FRONT_END_TECHNOLOGIES
+    }
+}
+```
+
+```js
+// src/data.js
+exports.FRONT_END_TECHNOLOGIES = [
+    { id: 1001, name: 'Angular', description: 'The modern web developer\'s platform' },
+    { id: 1002, name: 'React', description: 'A JavaScript library for building user interfaces' },
+    { id: 1003, name: 'Vue', description: 'The Progressive JavaScript Framework' }
+];
+```
+
+```js
+// server.js
+const express = require('express');
+const { ApolloServer, gql } = require('apollo-server-express');
+const cors = require('cors');
+
+const PORT = process.env.port || 5000;
+const app = express();
+app.use(express.json(), cors());
+
+const { typeDefs, resolvers } = require('./src/schema');
+
+// initialize apollo server epxress
+const server = new ApolloServer({ typeDefs, resolvers });
+server.applyMiddleware({ app });
+
+app.listen({ port: PORT }, () => console.log(`server running at localhost:${PORT + server.graphqlPath}`));
 ```
