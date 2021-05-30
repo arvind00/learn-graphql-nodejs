@@ -1,13 +1,29 @@
 const { gql } = require('apollo-server-express');
-const { FRONT_END_TECHNOLOGIES } = require('./data');
+const { TECHNOLOGY_LIST, EMPLOYEE_LIST, COMPANY_LIST } = require('./data');
 //define typeDefs and resolvers and export them
 
 exports.typeDefs = gql`
   type Query {
-      frontEndTechnologies: [FrontEndTechnology]
+      employees: [Employee]
+      companies: [Company]
+      technologies: [Technology]
   }
 
-  type FrontEndTechnology {
+  type Employee {
+      id: ID!
+      firstName: String!
+      lastName: String
+      jobLevel: Int
+      companyId: ID
+      technologyIds: [ID]
+  }
+
+  type Company {
+      id: ID!
+      name: String!
+  }
+
+  type Technology {
       id: ID!
       name: String!
       description: String
@@ -15,6 +31,8 @@ exports.typeDefs = gql`
 `
 exports.resolvers = {
     Query: {
-        frontEndTechnologies: () => FRONT_END_TECHNOLOGIES
+        employees: () => EMPLOYEE_LIST,
+        companies: () => COMPANY_LIST,
+        technologies: ()=> TECHNOLOGY_LIST
     }
 }
