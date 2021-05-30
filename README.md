@@ -10,7 +10,7 @@ Project to learn graphql server setup with nodejs
 ## Installation
 
 ```sh
-npm i cors graphql apollo-server-express -S
+npm i cors graphql apollo-server-express nodemon -S
 ```
 
 ## Server code
@@ -39,3 +39,5 @@ server.applyMiddleware({ app });
 
 app.listen({ port: PORT }, () => console.log(`server running at localhost:${PORT + server.graphqlPath}`));
 ```
+
+For deep dive check out the `server/tutorials` folder

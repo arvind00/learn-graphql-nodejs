@@ -1,4 +1,4 @@
-## What is grapqhql?
+## What is Graphql?
 - It is a query language for our API.
 - Graphql has a type system that defines data
 - Types has fields
