@@ -6,7 +6,7 @@
 - It is the contract between the client and server.
 
 ## Activity
-- create and Employee schema 
+- create an Employee schema 
 - the schema should have the below fields
     - id
     - firstName
@@ -15,19 +15,19 @@
 - For the data use some hardcoded values
 
 ## Implementation strategy
-- [] define a constant `typeDefs` and initialize it with the value returned by `gql` function
-- [] To the gql function pass a template string containing two types
-    - [] Employee
-    - [] Query
-- [] Employee should have 
-    - [] id: ID!
-    - [] firstName: String
-    - [] lastName: String
-    - [] jobLevel: Int
-- [] Query should have
-    - [] employees: [Employee]
-- [] Next define an array named employeeList which contains an array of employee details
-- [] define the resolver returning the employeeList for the query: employee
+- [x] define a constant `typeDefs` and initialize it with the value returned by `gql` function
+- [x] To the gql function pass a template string containing two types
+    - [x] Employee
+    - [x] Query
+- [x] Employee should have 
+    - [x] id: ID!
+    - [x] firstName: String
+    - [x] lastName: String
+    - [x] jobLevel: Int
+- [x] Query should have
+    - [x] employees: [Employee]
+- [x] Next define an array named employeeList which contains an array of employee details
+- [x] define the resolver returning the employeeList for the query: employee
 
 ## Solution
 
@@ -42,8 +42,8 @@ app.use(express.json(), cors());
 
 // employee list
 const employeeList = [
-  { id: 622052, firstName: 'Arvindchand', lastName: 'Lairenjam', jobjLevel: 4 },
-  { id: 603108, firstName: 'Ankitha', lastName: 'Mittal', jobjLevel: 4 },
+  { id: 611052, firstName: 'Arvindchand', lastName: 'Lairenjam', jobjLevel: 4 },
+  { id: 611008, firstName: 'Ankitha', lastName: 'Mittal', jobjLevel: 4 },
 ]
 
 // create graphql schema (query + resolvers)
