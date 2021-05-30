@@ -95,7 +95,7 @@ query {
     - name
     - description
 - Create a file `src/data.js` with a list of front-end technologies which we can serve it to the query defined above
-- In the `src/schema.js` define `resolvers` resolving the field(s) defined the query 
+- In the `src/schema.js` define `resolvers` resolving the field(s) defined in the query 
 
 ## Solution
 
@@ -149,4 +149,17 @@ const server = new ApolloServer({ typeDefs, resolvers });
 server.applyMiddleware({ app });
 
 app.listen({ port: PORT }, () => console.log(`server running at localhost:${PORT + server.graphqlPath}`));
+```
+
+### Query in Graphql Playground
+
+```gql
+query {
+  frontEndTechnologies{
+    id
+    name
+    description
+  }
+}
+
 ```
