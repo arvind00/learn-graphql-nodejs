@@ -5,6 +5,17 @@
 
 ## Special Note
 - If we don't define a resolver for a particular field, graphql will automatically define a default resolver for it.
+- A resolver can accept 4 positional arguments like: `fieldName: (parent, args, context, info) => { return result }`
+    - Parent: is the object that will inlude the result returned by the resolver
+    - args: is the argument passed from the query 
+    - context: is a shared object by all resolvers in a particular query
+    - info: is an object that contains the execution state, field name and path to the field from parent
+- A resolver can return
+    - null or undefined
+    - array
+    - scalar or object
+    - promise
+
 
 ## Activity 1 - Get an employee by ID
 - update the `src/schema.js` to have one more field in the query say: `employeeById(id: ID): Employee`
@@ -104,5 +115,51 @@ query {
     companyId
     technologyIds
   }
+}
+```
+
+## Activity 2 - Perform + , - , * , /
+- setup your graphql server such that you can perform the four basic arithmetic operations on two numbers
+
+## Implementation Strategy
+- [x] in `src/schema.js` define a Query with the below fields
+    - [x] add(a: Int, b: Int): Int
+    - [x] subtract(a: Int, b: Int): Int
+    - [x] multiply(a: Int, b: Int): Int
+    - [x] divide(a: Int, b: Int): Int
+
+## Solution
+
+```js
+// src/schema.js
+const { gql } = require('apollo-server-express');
+//define typeDefs and resolvers and export them
+
+exports.typeDefs = gql`
+  type Query {
+      add(a: Int, b: Int): Int
+      subtract(a: Int, b: Int): Int
+      multiply(a: Int, b: Int): Int
+      divide(a: Int, b: Int): Int
+  }
+`
+exports.resolvers = {
+    Query: {
+        add: (parent, args, context, info) => args.a + args.b,
+        subtract: (parent, args, context, info) => args.a - args.b,
+        multiply: (parent, args, context, info) => args.a * args.b,
+        divide: (parent, args, context, info) => Math.floor(args.a / args.b)
+    }
+}
+```
+
+### Query in Graphql Playground
+
+```gql
+query {
+  add(a: 10, b: 5)
+  subtract(a: 10, b: 5)
+  multiply(a: 10, b: 5)
+  divide(a: 10, b: 5)
 }
 ```
