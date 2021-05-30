@@ -4,7 +4,7 @@
 - A resolver function may fetch data from backend or another api
 
 ## Special Note
-- If we don't define a resolver for a particular field, graphql will automatically define a defult resolver for it.
+- If we don't define a resolver for a particular field, graphql will automatically define a default resolver for it.
 
 ## Activity 1 - Get an employee by ID
 - update the `src/schema.js` to have one more field in the query say: `employeeById(id: ID): Employee`
