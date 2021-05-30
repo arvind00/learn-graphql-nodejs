@@ -4,17 +4,40 @@ const { TECHNOLOGY_LIST, EMPLOYEE_LIST, COMPANY_LIST } = require('./data');
 
 exports.typeDefs = gql`
   type Query {
-      add(a: Int, b: Int): Int
-      subtract(a: Int, b: Int): Int
-      multiply(a: Int, b: Int): Int
-      divide(a: Int, b: Int): Int
+      employeeById(id: ID!): Employee
+      employees: [Employee]
+      companyById(id: ID!): Company
+      companies: [Company]
+      technologyById(id: ID!): Technology
+      technologies: [Technology]
+  }
+
+  type Employee {
+      id: ID!
+      firstName: String!
+      lastName: String
+      jobLevel: Int
+      companyId: ID
+  }
+
+  type Company {
+      id: ID!
+      name: String!
+  }
+
+  type Technology {
+      id: ID!
+      name: String!
+      description: String
   }
 `
 exports.resolvers = {
     Query: {
-        add: (parent, args, context, info) => args.a + args.b,
-        subtract: (parent, args, context, info) => args.a - args.b,
-        multiply: (parent, args, context, info) => args.a * args.b,
-        divide: (parent, args, context, info) => Math.floor(args.a / args.b)
+        employeeById: (parent, args, context, info) => EMPLOYEE_LIST.find((e) => e.id == args.id),
+        employees: () => EMPLOYEE_LIST,
+        companyById: (parent, args) => COMPANY_LIST.find((c) => c.id == args.id),
+        companies: () => COMPANY_LIST,
+        technologyById: (parent, args) => TECHNOLOGY_LIST.find((t) => t.id == args.id),
+        technologies: () => TECHNOLOGY_LIST
     }
 }

@@ -1,7 +1,7 @@
 exports.TECHNOLOGY_LIST = [
-    { id: 1001, name: 'Angular', description: 'The modern web developer\'s platform' },
-    { id: 1002, name: 'React', description: 'A JavaScript library for building user interfaces' },
-    { id: 1003, name: 'Vue', description: 'The Progressive JavaScript Framework' }
+    { id: 'T1001', name: 'Angular', description: 'The modern web developer\'s platform' },
+    { id: 'T1002', name: 'React', description: 'A JavaScript library for building user interfaces' },
+    { id: 'T1003', name: 'Vue', description: 'The Progressive JavaScript Framework' }
 ];
 
 exports.EMPLOYEE_LIST = [
