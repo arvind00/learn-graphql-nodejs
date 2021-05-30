@@ -72,3 +72,14 @@ server.applyMiddleware({ app });
 
 app.listen({ port: PORT }, () => console.log(`server running at localhost:${PORT + server.graphqlPath}`));
 ```
+
+## Query from graphql playground
+
+```gql
+query {
+  employees{
+    id
+    firstName
+  }
+}
+```
