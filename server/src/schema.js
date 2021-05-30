@@ -7,6 +7,7 @@ exports.typeDefs = gql`
       employees: [Employee]
       companies: [Company]
       technologies: [Technology]
+      employeeById(id: ID): Employee
   }
 
   type Employee {
@@ -33,6 +34,7 @@ exports.resolvers = {
     Query: {
         employees: () => EMPLOYEE_LIST,
         companies: () => COMPANY_LIST,
-        technologies: ()=> TECHNOLOGY_LIST
+        technologies: () => TECHNOLOGY_LIST,
+        employeeById: (parent, args, context, info) => EMPLOYEE_LIST.find((e) => e.id == args.id)
     }
 }
